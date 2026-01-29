@@ -1,0 +1,7 @@
+package com.jujulioed.med.voll.api.repository;
+
+import com.jujulioed.med.voll.api.entity.Doctor;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface DoctorRepository extends JpaRepository<Doctor, Long> {
+}
