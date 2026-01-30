@@ -17,6 +17,9 @@ public record DoctorRegistrationDataDTO(
         String email,
 
         @NotBlank
+        String phone,
+
+        @NotBlank
         // \\d - means that it allows only numbers;  {4,6} - it accepts 4 to 6 digits
         @Pattern(regexp = "\\d{4,6}")
         String crm,
