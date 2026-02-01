@@ -1,6 +1,7 @@
 package com.jujulioed.med.voll.api.entity;
 
 import com.jujulioed.med.voll.api.dto.DoctorRegistrationDataDTO;
+import com.jujulioed.med.voll.api.dto.DoctorUpdateDataDTO;
 import com.jujulioed.med.voll.api.enums.Specialty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -36,5 +37,19 @@ public class Doctor {
         this.specialty = doctorRegistrationDataDTO.specialty();
         this.address = new Address(doctorRegistrationDataDTO.address());
         this.phone = doctorRegistrationDataDTO.phone();
+    }
+
+    public void updateData(DoctorUpdateDataDTO data) {
+        if (data.name() != null) {
+            this.name = data.name();
+        }
+
+        if (data.phone() != null) {
+            this.phone = data.phone();
+        }
+
+        if (data.address() != null) {
+            this.address.updateAddressData(data.address());
+        }
     }
 }

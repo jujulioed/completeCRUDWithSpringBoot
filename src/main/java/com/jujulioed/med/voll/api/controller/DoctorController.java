@@ -1,6 +1,7 @@
 package com.jujulioed.med.voll.api.controller;
 
 import com.jujulioed.med.voll.api.dto.DoctorRegistrationDataDTO;
+import com.jujulioed.med.voll.api.dto.DoctorUpdateDataDTO;
 import com.jujulioed.med.voll.api.dto.ListDataDoctorsDTO;
 import com.jujulioed.med.voll.api.entity.Doctor;
 import com.jujulioed.med.voll.api.repository.DoctorRepository;
@@ -30,5 +31,12 @@ public class DoctorController {
     @GetMapping
     public Page<ListDataDoctorsDTO> listDoctor(@PageableDefault(size = 10, sort= {"name"}) Pageable pageable) {
         return repository.findAll(pageable).map(ListDataDoctorsDTO::new);
+    }
+
+    @PutMapping
+    @Transactional
+    public void atualizar(@RequestBody @Valid DoctorUpdateDataDTO doctorRegistrationDataDTO) {
+        var doctor = repository.getReferenceById(doctorRegistrationDataDTO.id());
+        doctor.updateData(doctorRegistrationDataDTO);
     }
 }
