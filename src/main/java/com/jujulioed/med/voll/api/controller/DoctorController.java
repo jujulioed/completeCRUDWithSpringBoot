@@ -39,4 +39,10 @@ public class DoctorController {
         var doctor = repository.getReferenceById(doctorRegistrationDataDTO.id());
         doctor.updateData(doctorRegistrationDataDTO);
     }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void delete(@PathVariable Long id) {
+        repository.deleteById(id);
+    }
 }
